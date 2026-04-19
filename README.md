@@ -71,6 +71,49 @@ By completing this project, you will:
 
 ---
 
+## 🧪 Labs Structure
+
+### 🏠 Core Components
+```text
+MainActivity        → Lab menu (7 buttons)
+FakeDataSource      → Shared async simulator (login, search, prices, etc.)
+
+├─ Rendezvous / Buffered / Conflated / Unlimited
+├─ close() + for loop iteration
+└─ Bonus: send to closed channel
+
+├─ produce{} builder (auto-close)
+├─ Chained pipeline (square numbers)
+├─ Fan-Out: 3 workers sharing one channel
+└─ Fan-In: 3 producers → 1 consumer
+
+├─ Sealed UiEvent class (Toast, Dialog, Navigate, Error)
+├─ receiveAsFlow() exposure pattern
+├─ Async login → navigation event
+└─ Rotation test (proves no double-fire)
+
+├─ Cold flow (collected twice to prove re-execution)
+├─ flowOf() and asFlow()
+├─ Lazy execution (nothing runs before collect)
+└─ Cancellation (auto-cleanup)
+
+├─ StateFlow counter with update{}
+├─ StateFlow with data class (loading/error/success)
+├─ SharedFlow broadcast (two collectors, both receive)
+└─ replay=1 rotation bug (the reason Channel exists)
+
+├─ map + filter
+├─ combine (latest from each, timeline exercise)
+├─ zip (strict 1-to-1 pairing)
+├─ debounce + distinctUntilChanged (live search box)
+└─ flatMapLatest (cancel stale requests)
+
+├─ The memory leak (wrong way, visible in Logcat)
+├─ repeatOnLifecycle(STARTED) — the right way
+├─ stateIn() + WhileSubscribed(5_000)
+└─ SharingStarted options comparison
+
+
 ## ▶️ Getting Started
 
 1. Clone the repository
