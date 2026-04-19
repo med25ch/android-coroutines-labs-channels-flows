@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:label="Coroutine Lab"
+        android:theme="@style/Theme.CoroutineLab"
+        android:supportsRtl="true">
+
+        <activity android:name=".ui.MainActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Lab Activities -->
+        <activity android:name=".ui.lab1_channel_basics.Lab1Activity" />
+        <activity android:name=".ui.lab2_fan_out_in.Lab2Activity" />
+        <activity android:name=".ui.lab3_event_bus.Lab3Activity" />
+        <activity android:name=".ui.lab4_flow_basics.Lab4Activity" />
+        <activity android:name=".ui.lab5_stateflow_sharedflow.Lab5Activity" />
+        <activity android:name=".ui.lab6_flow_operators.Lab6Activity" />
+        <activity android:name=".ui.lab7_flow_lifecycle.Lab7Activity" />
+
+    </application>
+
+</manifest>

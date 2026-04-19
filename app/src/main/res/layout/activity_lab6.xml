@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="⚙️ Flow Operators"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="map, filter, combine, zip, debounce, flatMapLatest"
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="12dp"/>
+
+    <Button android:id="@+id/btnMapFilter"
+        style="@style/LabButton"
+        android:text="Ex 1 — map + filter"
+        android:layout_marginBottom="8dp"/>
+
+    <Button android:id="@+id/btnCombine"
+        style="@style/LabButton"
+        android:text="Ex 2 — combine (latest from each)"
+        android:layout_marginBottom="8dp"/>
+
+    <Button android:id="@+id/btnZip"
+        style="@style/LabButton"
+        android:text="Ex 3 — zip (strict 1-to-1 pairing)"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Debounce search -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ex 4 — debounce (search box)"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:layout_marginBottom="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <EditText
+            android:id="@+id/etSearch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Type to search fruits..."
+            android:inputType="text"
+            android:layout_marginEnd="8dp"
+            android:background="@android:drawable/edit_text"
+            android:padding="8dp"/>
+
+        <Button
+            android:id="@+id/btnStartDebounce"
+            style="@style/LabButtonSmall"
+            android:text="Start"/>
+    </LinearLayout>
+
+    <Button android:id="@+id/btnFlatMapLatest"
+        style="@style/LabButton"
+        android:text="Ex 5 — flatMapLatest (cancel stale)"
+        android:layout_marginBottom="8dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tap a button to start...\n"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:background="#1A1A2E"
+            android:textColor="#00FF88"/>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="♻️ Flow + Lifecycle"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="repeatOnLifecycle, stateIn(), WhileSubscribed"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Live temperature (RIGHT way) -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ Live Temperature (repeatOnLifecycle)"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvLiveOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Waiting..."
+            android:textSize="18sp"
+            android:background="#E8F5E9"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- stateIn() output -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ stateIn() Temperature (Ex 2)"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvStateInOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(implement TODO 2 in Lab7ViewModel)"
+            android:textSize="16sp"
+            android:background="#E8F5E9"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Stock price -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="✅ Stock Price stateIn() (Ex 3)"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvStockOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="(implement TODO 3 in Lab7ViewModel)"
+            android:textSize="16sp"
+            android:background="#E8F5E9"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Wrong way reminder -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⚠️ Wrong Way Output (check Lab7Activity)"
+            android:textStyle="bold"
+            android:textSize="13sp"
+            android:layout_marginBottom="4dp"/>
+
+        <TextView
+            android:id="@+id/tvWrongOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Uncomment the WRONG way block\nin Lab7Activity to see it run."
+            android:textSize="14sp"
+            android:background="#FFEBEE"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Explanation button -->
+        <Button
+            android:id="@+id/btnExplainLifecycle"
+            style="@style/LabButton"
+            android:text="📖 Explain Lifecycle States"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Explanation text -->
+        <TextView
+            android:id="@+id/tvExplanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:background="#1A1A2E"
+            android:textColor="#FFD54F"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+</ScrollView>

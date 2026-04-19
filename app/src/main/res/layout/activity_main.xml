@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🧪 Coroutine Lab"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#1A1A2E"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Channels &amp; Flows — Practice Arena"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginBottom="32dp"/>
+
+        <!-- Lab 1 -->
+        <Button
+            android:id="@+id/btnLab1"
+            style="@style/LabButton"
+            android:text="Lab 1 — Channel Basics\nsend / receive / buffer types"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 2 -->
+        <Button
+            android:id="@+id/btnLab2"
+            style="@style/LabButton"
+            android:text="Lab 2 — produce / Fan-Out / Fan-In\npipelines and work distribution"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 3 -->
+        <Button
+            android:id="@+id/btnLab3"
+            style="@style/LabButton"
+            android:text="Lab 3 — Channel as Event Bus\none-shot UI events"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 4 -->
+        <Button
+            android:id="@+id/btnLab4"
+            style="@style/LabButton"
+            android:text="Lab 4 — Flow Basics\ncold vs hot, builders"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 5 -->
+        <Button
+            android:id="@+id/btnLab5"
+            style="@style/LabButton"
+            android:text="Lab 5 — StateFlow &amp; SharedFlow\nstate vs events"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 6 -->
+        <Button
+            android:id="@+id/btnLab6"
+            style="@style/LabButton"
+            android:text="Lab 6 — Flow Operators\nmap, filter, combine, zip, debounce"
+            android:layout_marginBottom="12dp"/>
+
+        <!-- Lab 7 -->
+        <Button
+            android:id="@+id/btnLab7"
+            style="@style/LabButton"
+            android:text="Lab 7 — Flow + Lifecycle\nrepeatOnLifecycle, flowWithLifecycle"
+            android:layout_marginBottom="12dp"/>
+
+    </LinearLayout>
+</ScrollView>

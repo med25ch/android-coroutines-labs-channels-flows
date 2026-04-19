@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F5F5F5">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🔥 StateFlow &amp; SharedFlow"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="State holders and broadcast streams."
+        android:textSize="12sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Ex 1: Counter -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ex 1 — StateFlow Counter"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvCounter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Counter: (implement TODO 1)"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:background="#E8EAF6"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <Button android:id="@+id/btnDecrement"
+            style="@style/LabButtonSmall"
+            android:text="−"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"/>
+
+        <Button android:id="@+id/btnReset"
+            style="@style/LabButtonSmall"
+            android:text="Reset"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"/>
+
+        <Button android:id="@+id/btnIncrement"
+            style="@style/LabButtonSmall"
+            android:text="+"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- Ex 2: User loading state -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ex 2 — StateFlow Loading State"
+        android:textStyle="bold"
+        android:textSize="13sp"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvUserState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Idle"
+        android:background="#E8EAF6"
+        android:padding="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <Button android:id="@+id/btnLoadUser"
+            style="@style/LabButtonSmall"
+            android:text="Load User"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"/>
+
+        <Button android:id="@+id/btnSimulateError"
+            style="@style/LabButtonSmall"
+            android:text="Simulate Error"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <!-- Ex 3 & 4 -->
+    <Button android:id="@+id/btnBroadcast"
+        style="@style/LabButton"
+        android:text="Ex 3 — Broadcast SharedFlow message"
+        android:layout_marginBottom="8dp"/>
+
+    <Button android:id="@+id/btnReplayEvent"
+        style="@style/LabButton"
+        android:text="Ex 4 — Send Replayable Event (then rotate)"
+        android:layout_marginBottom="8dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/tvOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Output log...\n"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:padding="12dp"
+            android:background="#1A1A2E"
+            android:textColor="#00FF88"/>
+    </ScrollView>
+
+</LinearLayout>
