@@ -172,6 +172,15 @@ class Lab1ViewModel : ViewModel() {
      * Expected: ClosedSendChannelException
      */
     fun startClosedSendDemo(onReceive: (String) -> Unit) {
-        // TODO BONUS — your code here
+        val channel = Channel<String>()
+        channel.close(Exception("Closed for no damn reason"))
+
+        viewModelScope.launch {
+            try {
+                channel.send("Hello")
+            } catch (e: Exception) {
+                onReceive(e.message!!)
+            }
+        }
     }
 }
