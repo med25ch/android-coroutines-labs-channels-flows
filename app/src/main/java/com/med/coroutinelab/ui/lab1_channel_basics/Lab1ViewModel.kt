@@ -33,7 +33,21 @@ class Lab1ViewModel : ViewModel() {
      * HINT: Channel<String>() with no argument = Rendezvous
      */
     fun startRendezvousDemo(onReceive: (String) -> Unit) {
-        // TODO 1 — your code here
+        val channel = Channel<String>()
+
+        viewModelScope.launch {
+            for (i in 1..5) {
+                channel.send("Message $i")
+                delay(500)
+            }
+        }
+
+        viewModelScope.launch {
+            for (i in 1..5) {
+                onReceive(channel.receive())
+                delay(5000)
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -53,6 +67,7 @@ class Lab1ViewModel : ViewModel() {
      */
     fun startBufferedDemo(onReceive: (String) -> Unit) {
         // TODO 2 — your code here
+
     }
 
     // -------------------------------------------------------------------------
