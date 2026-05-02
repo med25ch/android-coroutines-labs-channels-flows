@@ -1,5 +1,6 @@
 package com.med.coroutinelab.ui.lab1_channel_basics
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
@@ -45,7 +46,7 @@ class Lab1ViewModel : ViewModel() {
         viewModelScope.launch {
             for (i in 1..5) {
                 onReceive(channel.receive())
-                delay(5000)
+                delay(600)
             }
         }
     }
@@ -66,8 +67,22 @@ class Lab1ViewModel : ViewModel() {
      * HINT: Channel<String>(capacity = 3)
      */
     fun startBufferedDemo(onReceive: (String) -> Unit) {
-        // TODO 2 — your code here
+        val channel = Channel<String>(capacity = 3)
+        viewModelScope.launch {
+            for (i in 1..6) {
+                channel.send("Message $i")
+                delay(100)
+            }
+        }
 
+        viewModelScope.launch {
+            for (i in 1..6) {
+                val msg = channel.receive()   // ← receive FIRST
+                Log.d("Consumer", "Got $msg at ${System.currentTimeMillis()}")
+                onReceive(" Consumer Got $msg at ${System.currentTimeMillis()}")
+                delay(1000)                    // ← THEN slow down
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
