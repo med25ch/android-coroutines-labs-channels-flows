@@ -3,6 +3,7 @@ package com.med.coroutinelab.ui.lab1_channel_basics
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -102,7 +103,23 @@ class Lab1ViewModel : ViewModel() {
      * HINT: Channel<String>(Channel.CONFLATED)
      */
     fun startConflatedDemo(onReceive: (String) -> Unit) {
-        // TODO 3 — your code here
+        val channel = Channel<String>(Channel.CONFLATED)
+
+        viewModelScope.launch {
+            for (i in 1..5) {
+                channel.send("Message $i")
+                Log.d("Producer", "Sent $i")
+                delay(100)  // producer sends every 100ms
+            }
+        }
+
+        viewModelScope.launch {
+            for (msg in channel) {
+                Log.d("Consumer", "Got $msg")
+                onReceive(msg)
+                delay(500)  // consumer takes 500ms per item
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -120,8 +137,26 @@ class Lab1ViewModel : ViewModel() {
      * IMPORTANT: Without close(), the for loop suspends forever waiting for more items.
      * This is a common source of leaks — always close your channels.
      */
+    @OptIn(DelicateCoroutinesApi::class)
     fun startCloseDemo(onReceive: (String) -> Unit) {
-        // TODO 4 — your code here
+        val channel = Channel<Int>()
+
+        viewModelScope.launch {
+            for (i in 1..11) {
+                channel.send(i)
+                delay(500)
+            }
+            channel.close()
+            onReceive(channel.isClosedForSend.toString())
+        }
+
+        viewModelScope.launch {
+            onReceive(channel.isClosedForReceive.toString())
+            for (item in channel) {
+                onReceive("Received: $item")
+            }
+            onReceive(channel.isClosedForReceive.toString())
+        }
     }
 
     // -------------------------------------------------------------------------
