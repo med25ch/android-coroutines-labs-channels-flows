@@ -75,8 +75,21 @@ class Lab2ViewModel : ViewModel() {
      *       for (n in input) send(n * n)
      *   }
      */
-    fun startPipelineDemo(onReceive: (String) -> Unit) {
-        // TODO 2 — your code here
+    fun startPipelineDemo(onReceive: (String) -> Unit) {`
+
+        val numbers = viewModelScope.numberProducer()
+
+        val transformedNumbers = viewModelScope.square(numbers)
+
+        viewModelScope.launch {
+            for (transformedNumber in transformedNumbers) {
+                onReceive("transformed is $transformedNumber")
+            }
+        }
+    }
+
+    fun CoroutineScope.square(input: ReceiveChannel<Int>): ReceiveChannel<Int> = produce {
+        for (n in input) send(n * n)
     }
 
     // -------------------------------------------------------------------------
