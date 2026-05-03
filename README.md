@@ -1,3 +1,5 @@
+
+![App Preview](images/channels_flow_hands_on.png)
 # 🚀 Android Coroutines Labs – Channels & Flows
 
 This repository is a hands-on practice project designed to master **Kotlin Coroutines**, specifically **StateFlow, SharedFlow, and Channels** in an Android environment.
