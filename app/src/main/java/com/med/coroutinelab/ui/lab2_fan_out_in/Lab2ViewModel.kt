@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.med.coroutinelab.data.FakeDataSource
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.produce
 import kotlinx.coroutines.delay
@@ -39,7 +41,20 @@ class Lab2ViewModel : ViewModel() {
      * Notice: you don't call close() — produce{} handles it.
      */
     fun startProduceDemo(onReceive: (String) -> Unit) {
-        // TODO 1 — your code here
+
+        viewModelScope.launch {
+            for(number in numberProducer()){
+                onReceive("number is $number")
+            }
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun CoroutineScope.numberProducer(): ReceiveChannel<Int> = produce {
+        for (i in 1..5) {
+            send(i);
+            delay(300)
+        }
     }
 
     // -------------------------------------------------------------------------
