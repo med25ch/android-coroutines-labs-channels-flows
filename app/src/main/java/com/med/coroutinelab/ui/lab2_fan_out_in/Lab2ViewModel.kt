@@ -75,7 +75,7 @@ class Lab2ViewModel : ViewModel() {
      *       for (n in input) send(n * n)
      *   }
      */
-    fun startPipelineDemo(onReceive: (String) -> Unit) {`
+    fun startPipelineDemo(onReceive: (String) -> Unit) {
 
         val numbers = viewModelScope.numberProducer()
 
@@ -108,7 +108,38 @@ class Lab2ViewModel : ViewModel() {
      * Observe: faster workers pick up more tasks naturally — this is load balancing.
      */
     fun startFanOutDemo(onReceive: (String) -> Unit) {
-        // TODO 3 — your code here
+
+        val taskProducer = viewModelScope.taskProducer()
+
+        viewModelScope.launch {
+            for (task in taskProducer){
+                onReceive("Worker 1 processed: $task")
+                delay(200L)
+            }
+        }
+
+        viewModelScope.launch {
+            for (task in taskProducer){
+                onReceive("Worker 2 processed: $task")
+                delay(500L)
+            }
+        }
+
+        viewModelScope.launch {
+            for (task in taskProducer){
+                onReceive("Worker 3 processed: $task")
+                delay(800)
+            }
+        }
+
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    fun CoroutineScope.taskProducer(): ReceiveChannel<String> = produce {
+        for (i in 1..9) {
+            send("Task_$i");
+            delay(300)
+        }
     }
 
     // -------------------------------------------------------------------------
