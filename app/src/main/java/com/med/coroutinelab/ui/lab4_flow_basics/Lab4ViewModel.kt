@@ -1,13 +1,13 @@
 package com.med.coroutinelab.ui.lab4_flow_basics
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.med.coroutinelab.data.FakeDataSource
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.launch
 
 /**
@@ -44,8 +44,21 @@ class Lab4ViewModel : ViewModel() {
      *   }
      */
     fun startColdDemo(onReceive: (String) -> Unit) {
-        // TODO 1 — your code here
         // Collect the flow TWICE to prove it's cold
+        val flow = flow {
+            onReceive("Flow started")
+            emit("Item 1")
+            delay(500)
+            emit("Item 2")
+            delay(500)
+            emit("Item 3")
+        }
+
+        viewModelScope.launch {
+            flow.collect { onReceive(it) }
+            flow.collect { onReceive(it) }
+        }
+
     }
 
     // -------------------------------------------------------------------------
@@ -62,7 +75,13 @@ class Lab4ViewModel : ViewModel() {
      * These are still cold — each collect triggers a new emission.
      */
     fun startFlowOfDemo(onReceive: (String) -> Unit) {
-        // TODO 2 — your code here
+        val colorsFlow = flowOf("Red", "Green", "Blue")
+        val numbersFlow = listOf(10, 20, 30).asFlow()
+
+        viewModelScope.launch {
+            colorsFlow.collect { onReceive(it) }
+            numbersFlow.collect { onReceive(it.toString()) }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -81,7 +100,26 @@ class Lab4ViewModel : ViewModel() {
      *  The flow block did not execute at creation time.
      */
     fun startLazyDemo(onReceive: (String) -> Unit) {
-        // TODO 3 — your code here
+        viewModelScope.launch {
+
+            val customFlow = flow {
+                for (item in 1..3) {
+                    Log.d("Flow", "Producing item $item")  // ← background log
+                    emit("Item $item")                      // ← actual emitted value
+                    delay(1000)
+                }
+            }
+
+            onReceive("Flow created — not started yet")
+
+            delay(1000)
+
+            onReceive("Now collecting...")
+
+            customFlow.collect {
+                onReceive(it)
+            }
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -100,6 +138,26 @@ class Lab4ViewModel : ViewModel() {
      *  No special cleanup needed — this is a key Flow advantage over callbacks.
      */
     fun startCancellationDemo(onReceive: (String) -> Unit) {
-        // TODO 4 — your code here
+        var counter = 0
+
+        val colorsFlow = flow {
+            while (true) {
+                delay(400)
+                emit(counter)
+            }
+        }
+
+        val job = viewModelScope.launch {
+            colorsFlow.collect {
+                onReceive(it.toString())
+                counter++
+            }
+        }
+
+        viewModelScope.launch {
+            delay(5000)
+            job.cancelAndJoin()
+            onReceive("Cancelled after $counter items")
+        }
     }
 }
