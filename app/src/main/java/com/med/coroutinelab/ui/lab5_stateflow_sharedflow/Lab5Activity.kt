@@ -43,17 +43,13 @@ class Lab5Activity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                // TODO: After completing Lab5ViewModel Ex1, uncomment:
-                /*
                 launch {
                     viewModel.counter.collect { count ->
                         binding.tvCounter.text = "Counter: $count"
                     }
                 }
-                */
 
-                // TODO: After completing Lab5ViewModel Ex2, uncomment:
-                /*
+
                 launch {
                     viewModel.userState.collect { state ->
                         binding.tvUserState.text = when {
@@ -64,7 +60,7 @@ class Lab5Activity : AppCompatActivity() {
                         }
                     }
                 }
-                */
+
 
                 // TODO: After completing Lab5ViewModel Ex3, uncomment:
                 // TWO collectors — both get every message (unlike Channel)

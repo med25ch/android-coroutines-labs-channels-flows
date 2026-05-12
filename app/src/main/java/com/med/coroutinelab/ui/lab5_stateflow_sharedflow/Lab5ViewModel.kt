@@ -46,10 +46,21 @@ class Lab5ViewModel : ViewModel() {
      */
 
     // TODO 1 — declare _counter and counter here
+    private val _counter = MutableStateFlow(0)
+    val counter = _counter.asStateFlow()
 
-    fun increment() { /* TODO 1 */ }
-    fun decrement() { /* TODO 1 */ }
-    fun reset()     { /* TODO 1 */ }
+
+    fun increment() {
+        _counter.update { it + 1 }
+    }
+
+    fun decrement() {
+        _counter.update { it - 1 }
+    }
+
+    fun reset() {
+        _counter.update { 0 }
+    }
 
     // -------------------------------------------------------------------------
     // EXERCISE 2 — StateFlow for loading state (data class)
@@ -79,9 +90,23 @@ class Lab5ViewModel : ViewModel() {
      */
 
     // TODO 2 — declare _userState and userState here
+    private val _userState = MutableStateFlow<UserScreenState>(UserScreenState())
+    val userState = _userState.asStateFlow()
+    fun loadUser() {
+        _userState.update { it.copy(isLoading = true) }
+        viewModelScope.launch {
+            val result = FakeDataSource.fetchUser(42)
+            _userState.update { it.copy(isLoading = false, userName = result) }
+        }
+    }
 
-    fun loadUser()        { /* TODO 2 */ }
-    fun simulateError()   { /* TODO 2 */ }
+    fun simulateError() {
+        viewModelScope.launch {
+            _userState.update { it.copy(isLoading = true) }
+            delay(800)
+            _userState.update { it.copy(isLoading = false, errorMessage = "Network timeout") }
+        }
+    }
 
     // -------------------------------------------------------------------------
     // EXERCISE 3 — SharedFlow basics (broadcast to multiple collectors)
